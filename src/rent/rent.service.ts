@@ -87,7 +87,27 @@ export class RentService{
         console.log(dto.distnace)
         return `Price:${dto.price} Distance${dto.distnace}`
       }
+    }
+    async countDays(dto: CreateRentDto){
+      const start = new Date(dto.startRentDay).getDay()
+      const end = new Date(dto.endRentday).getDay()
+      // const period2: number = (end-start)/1000/60/60/24
+      const period2 : number = end-start
+      return period2
+    }
 
+   async getRents(): Promise<RentEntity[]>{
+    return await this.rentRepo.find()
+   }
+
+  //  async findActive(){
+
+  //  }
+
+  async removeRent(rentId: number){
+    await this.rentRepo.delete(rentId)
+  }
+      
 
 
       // const period = end - start
@@ -145,9 +165,9 @@ export class RentService{
       // //=============================================================================================================== 
       //   // return dto.distnace = selectTariff.price*daysPeriod
       // }
-    }
+    
 
-      // let discount = 0
+// let discount = 0
       // dto.price = daysPeriod*selectTariff
       // dto.distnace = daysPeriod*selectDistance
 
@@ -216,24 +236,4 @@ export class RentService{
       //   dto.price = dto.price-((dto.price*15)/100)
       // }
     
-  async countDays(dto: CreateRentDto){
-      const start = new Date(dto.startRentDay).getDay()
-      const end = new Date(dto.endRentday).getDay()
-      // const period2: number = (end-start)/1000/60/60/24
-      const period2 : number = end-start
-      return period2
-    }
-
-   async getRents(): Promise<RentEntity[]>{
-    return await this.rentRepo.find()
-   }
-
-  //  async findActive(){
-
-  //  }
-
-  async removeRent(rentId: number){
-    await this.rentRepo.delete(rentId)
-  }
-  
 }
