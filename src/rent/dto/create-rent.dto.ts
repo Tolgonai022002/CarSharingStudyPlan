@@ -19,9 +19,4 @@ export class CreateRentDto {
     @ApiProperty()
     distnace: number
 
-    // @ApiProperty()
-    // totalPrice?: number
-
-    // @ApiProperty()
-    // totalDistance?: number
 }

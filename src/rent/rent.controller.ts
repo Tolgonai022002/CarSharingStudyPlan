@@ -23,11 +23,6 @@ export class RentController {
     return this.rentService.getRents()
   }
 
-  // @Get()
-  // getRentById(rentId:number){
-  //   return await this.rentService.
-  // }
-
   @UseGuards(JwtAuthGuards)
   @Delete()
   async removeRent(rentId:number){
