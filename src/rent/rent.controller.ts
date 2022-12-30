@@ -18,7 +18,7 @@ export class RentController {
   }
 
   @UseGuards(JwtAuthGuards)
-  @Get()
+  @Get('getall')
   getAllRents(){
     return this.rentService.getRents()
   }

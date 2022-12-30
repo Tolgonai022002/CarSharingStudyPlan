@@ -7,7 +7,7 @@ import { RentEntity } from '../rent/entities/rent.entity'
 import { CarsService } from '../cars/cars.service'
 import { BadRequestException } from "@nestjs/common";
 import { UserEntity } from 'src/user/entities/user.entity';
-// import { TariffsPrice } from '../rent/enum'
+
 
 
 
@@ -57,27 +57,26 @@ export class RentService{
       const period = end -start
       if(period<=0){
         return 'Аренда автомобиля не может быть менее одного дня!'
-      }
-      if(period>=30){
+      }else if(period>=30){
         return 'Максимальный срок аренды  не может превышать 30 дней!'
       }
 
       if(period>=3 && period<=5){
-        dto.price = dto.price*period-((dto.price*5)/100)
+        dto.price = dto.price*period-((period*dto.price*5)/100)
         dto.distnace = dto.distnace*period
         console.log(dto.price)
         console.log(dto.distnace)
         return `Price:${dto.price} Distance${dto.distnace}`
       }
       if(period>=6 && period<=14){
-        dto.price = dto.price*period-((dto.price*10)/100)
+        dto.price = dto.price*period-((period*dto.price*10)/100)
         dto.distnace = dto.distnace*period
         console.log(dto.price)
         console.log(dto.distnace)
         return `Price:${dto.price} Distance${dto.distnace}`
       }
       if(period>=15 && period<=30){
-        dto.price = dto.price*period-((dto.price*15)/100)
+        dto.price = dto.price*period-((period*dto.price*15)/100)
         dto.distnace = dto.distnace*period
         console.log(dto.price)
         console.log(dto.distnace)
